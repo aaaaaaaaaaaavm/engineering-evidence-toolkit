@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "If you use this software, cite this repository and its VOLLEY source snapshot."
+title: "Engineering Evidence Toolkit"
+type: software
+authors:
+  - family-names: Mishra
+    given-names: Adityavardhan
+license: MIT
+repository-code: "https://github.com/aaaaaaaaaaaavm/engineering-evidence-toolkit"
+version: 0.1.0
+date-released: 2026-08-03
