@@ -1,11 +1,15 @@
 # Contributing
 
-I treat numerical outputs as engineering claims, not decoration. A change to `engtrace`
-should include a limiting-case test, stated units, and an explanation of which assumption
-changed. Do not replace an unfavourable result by changing a tolerance after the run.
+A checker is only useful if it can fail. A change to `engtrace` should include a clean case
+and the smallest broken case that proves the new guard is live. Do not add a check because its
+name sounds rigorous; state the drift it detects and what a pass does not establish.
 
-The files under `reference/volley/` are a hashed source snapshot. Change them only by
-rebuilding from a reviewed VOLLEY state and regenerating `SOURCE_MANIFEST.json`.
+Commit subjects should describe the failure mode or consequence. “Make empty evidence patterns
+fail closed” is useful later; “update core.py” is not.
+
+The files under `reference/volley/` are retained from VOLLEY commit `aa22a06`. Change them only
+by selecting a later reviewed VOLLEY commit, copying its exact blobs and regenerating
+`SOURCE_MANIFEST.json`.
 
 Before proposing a release, run:
 

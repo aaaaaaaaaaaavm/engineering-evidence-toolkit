@@ -1,35 +1,80 @@
 # Engineering Evidence Toolkit
 
-A small command-line tool for checking whether computational engineering results,
-Markdown links and declared artifacts still agree with their recorded sources.
+[![CI](https://github.com/aaaaaaaaaaaavm/engineering-evidence-toolkit/actions/workflows/ci.yml/badge.svg)](https://github.com/aaaaaaaaaaaavm/engineering-evidence-toolkit/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-blue.svg)](pyproject.toml)
+[![Scope: consistency only](https://img.shields.io/badge/scope-consistency%2C%20not%20validation-red.svg)](docs/VALIDATION.md)
 
-I built the first versions of these checks after stale figures, duplicated JSON and copied
-companion repositories drifted away from VOLLEY's calculations. This repository extracts the
-reusable part and includes a self-contained sample that is not coupled to VOLLEY.
+A dependency-free command-line check for whether computational results, Markdown links and
+declared artifacts still agree with their recorded sources.
 
-> **Boundary:** a passing traceability check establishes consistency and file identity. It
-> does not validate the physics, certify an analysis, or turn a numerical result into a measurement.
+**Boundary: a pass establishes consistency and file identity. It does not validate the
+physics, certify an analysis or turn a numerical result into a measurement.**
 
-## Run the example
+## Why this exists
+
+VOLLEY accumulated the ordinary failure modes of a long numerical project: a PDF older than
+its source, copied JSON that no script regenerated, figures from a superseded operating point
+and companion repositories that could drift from the engineering record. The project-specific
+checks are retained under `reference/volley/`. This package extracts the smaller part that is
+reusable elsewhere.
+
+The chain it checks is deliberately narrow:
+
+```text
+source files -> numerical JSON -> report links -> declared artifact hashes
+```
+
+A green result means that declared chain still holds. It says nothing about whether the first
+equation in the chain was right.
+
+## Run the sample
 
 ```bash
 python -m pip install -e .
 engtrace examples/sample_project/engtrace.json
 ```
 
-The configuration declares JSON files to inspect, Markdown links to resolve, and artifacts
-whose SHA-256 values must match. The tests include deliberately changed artifacts and broken
-links so a failure path is exercised, not merely described.
+The configuration names JSON and Markdown patterns, then declares artifacts with SHA-256 values
+and their source files. A declared pattern that matches nothing is a failure; otherwise a
+misspelled pattern could make a check pass by checking no files.
 
-## Verify the repository
+## Verify it
 
 ```bash
 python -m unittest discover -s tests -v
 python tools/verify_repository.py
 ```
 
-The original VOLLEY utilities and corrected result fixtures remain under
-`reference/volley/`. They are evidence of where the tool came from; they are not the public API.
+The tests include deliberately changed artifacts, broken links, non-finite JSON, missing source
+files and empty patterns. The failure path is exercised rather than described.
+
+## Configuration
+
+```json
+{
+  "json": ["results/*.json"],
+  "markdown": ["*.md"],
+  "artifacts": [
+    {
+      "path": "report.md",
+      "sha256": "<sha256>",
+      "sources": ["source.txt", "results/output.json"]
+    }
+  ]
+}
+```
+
+Paths are relative to the directory containing `engtrace.json`. External URLs and `mailto:`
+links are outside this check.
+
+## Repository layout
+
+- `src/engtrace/` — the dependency-free checker and command-line entry point;
+- `examples/sample_project/` — a self-contained non-VOLLEY example;
+- `tests/` — clean and deliberately broken evidence chains;
+- `reference/volley/` — original utilities and fixtures from VOLLEY commit `aa22a06`;
+- `docs/` — validation boundary, provenance, decisions and roadmap.
 
 See [summary](SUMMARY.md), [validation](docs/VALIDATION.md),
 [provenance](docs/PROVENANCE.md), [decision log](docs/DECISION_LOG.md), and

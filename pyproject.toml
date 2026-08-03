@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "engineering-evidence-toolkit"
-version = "0.1.0"
+version = "0.1.1"
 description = "Traceability checks for computational engineering repositories"
 readme = "README.md"
 requires-python = ">=3.11"
