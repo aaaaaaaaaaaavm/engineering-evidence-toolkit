@@ -3,6 +3,16 @@
 I record changes here by cause and consequence. A traceability tool that cannot account for
 its own origin would be a contradiction.
 
+## 0.1.2 — hash the committed source state consistently
+
+- Recomputed the source manifest from the retained blobs in VOLLEY commit `aa22a06`, not
+  from platform-specific working-tree line endings.
+- Made repository verification hash committed blobs while separately rejecting any retained
+  source file that differs from the current commit. A source archive normalizes text line endings
+  before hashing because no Git metadata is present; binary files remain byte-exact.
+- Kept the package behavior and validation boundary unchanged. This is a provenance portability
+  fix, not new engineering evidence.
+
 ## 0.1.1 — make an empty check fail closed
 
 - Replaced the provisional working-tree provenance with VOLLEY commit `aa22a06`. Every retained
