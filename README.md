@@ -1,7 +1,7 @@
 # Engineering Evidence Toolkit
 
 [![CI](https://github.com/aaaaaaaaaaaavm/engineering-evidence-toolkit/actions/workflows/ci.yml/badge.svg)](https://github.com/aaaaaaaaaaaavm/engineering-evidence-toolkit/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-blue.svg)](pyproject.toml)
 [![Scope: consistency only](https://img.shields.io/badge/scope-consistency%2C%20not%20validation-red.svg)](docs/VALIDATION.md)
 
@@ -83,3 +83,16 @@ See [summary](SUMMARY.md), [validation](docs/VALIDATION.md),
 ## License
 
 MIT.
+
+## Licence
+
+**Apache-2.0** — full text in [`LICENSE`](LICENSE), scope note in [`NOTICE`](NOTICE).
+
+Apache-2.0 is used here and **not** in the sibling VOLLEY design repositories, because this
+repository contains no part of the deployer design: its original code is `src/engtrace/`, and the
+copies under `reference/volley/` are repository tooling rather than the motor model or the
+geometry. **Apache-2.0 §3 grants patent rights**, so it is applied only where no invention is
+disclosed.
+
+**Not retroactive:** snapshots taken before this change remain available under the MIT licence
+they carried at the time, retained at [`LICENSE-MIT-superseded`](LICENSE-MIT-superseded).
