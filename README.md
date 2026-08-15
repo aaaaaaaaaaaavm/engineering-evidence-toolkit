@@ -73,7 +73,7 @@ links are outside this check.
 - `src/engtrace/` — the dependency-free checker and command-line entry point;
 - `examples/sample_project/` — a self-contained non-VOLLEY example;
 - `tests/` — clean and deliberately broken evidence chains;
-- `reference/volley/` — original utilities and fixtures from VOLLEY commit `aa22a06`;
+- `reference/volley/` — original utilities and fixtures from VOLLEY commit `aa22a06`. **A dated snapshot, not a mirror.** VOLLEY has since changed its operating point and its architecture; the figures inside this directory are what that commit held and are not corrected here, because a fixture that tracks its source is not a fixture;
 - `docs/` — validation boundary, provenance, decisions and roadmap.
 
 See [summary](SUMMARY.md), [validation](docs/VALIDATION.md),
