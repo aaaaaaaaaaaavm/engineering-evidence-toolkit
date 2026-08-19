@@ -80,10 +80,6 @@ See [summary](SUMMARY.md), [validation](docs/VALIDATION.md),
 [provenance](docs/PROVENANCE.md), [decision log](docs/DECISION_LOG.md), and
 [open problems](OPEN_PROBLEMS.md).
 
-## License
-
-MIT.
-
 ## Licence
 
 **Apache-2.0** — full text in [`LICENSE`](LICENSE), scope note in [`NOTICE`](NOTICE).
